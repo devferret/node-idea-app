@@ -7,6 +7,10 @@ const flash = require('connect-flash')
 
 const app = express()
 
+// Import routes
+const ideas = require('./routes/ideas')
+const users = require('./routes/users')
+
 // Map global promise
 mongoose.Promise = global.Promise
 // Connect to mongoose
@@ -16,10 +20,6 @@ mongoose
   })
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.log(err))
-
-// Include Idea model
-require('./models/idea')
-const Idea = mongoose.model('idea')
 
 // Templetes works !
 app.set('views', './views')
@@ -49,56 +49,8 @@ app.use((req, res, next) => {
 // Routes works !
 app.get('/', (req, res) => res.render('index'))
 app.get('/about', (req, res) => res.render('about'))
-app.get('/ideas', (req, res) => {
-  Idea.find({})
-    .sort({ date: 'desc' })
-    .then(ideas => {
-      res.render('ideas/ideas', { ideas: ideas })
-    })
-})
-app.get('/ideas/add', (req, res) => res.render('ideas/add'))
-app.get('/ideas/edit/:id', (req, res) => {
-  Idea.findOne({ _id: req.params.id }).then(idea =>
-    res.render('ideas/edit', { idea: idea })
-  )
-})
-app.post('/ideas', bodyParser.json(), (req, res) => {
-  let errors = []
-  if (!req.body.title) errors.push({ text: 'Please add a title' })
-  if (!req.body.details) errors.push({ text: 'Please add some details' })
-  if (errors.length > 0)
-    res.render('ideas/add', {
-      errors: errors,
-      title: req.body.title,
-      detials: req.body.detials
-    })
-  else
-    new Idea({
-      title: req.body.title,
-      details: req.body.details
-    })
-      .save()
-      .then(() => {
-        req.flash('success_msg', 'Idea saved !')
-        res.redirect('/ideas')
-      })
-})
-app.put('/ideas/:id', (req, res) =>
-  Idea.findOne({ _id: req.params.id }).then(idea => {
-    idea.title = req.body.title
-    idea.details = req.body.details
-    idea.save().then(() => {
-      req.flash('success_msg', 'Idea updated !')
-      res.redirect('/ideas')
-    })
-  })
-)
-app.delete('/ideas/:id', (req, res) =>
-  Idea.remove({ _id: req.params.id }).then(() => {
-    req.flash('success_msg', 'Idea removed !')
-    res.redirect('/ideas')
-  })
-)
+app.use('/ideas', ideas)
+app.use('/users', users)
 
 // Port works !
 const port = process.env.port || 5555
