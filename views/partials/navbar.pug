@@ -1,0 +1,25 @@
+nav.navbar.is-primary
+	.container
+		.navbar-brand
+			a.navbar-item(href="/")
+				h1.title.has-text-white IdeaPOP
+			.navbar-burger.burger(data-target="navbarMenu" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');")
+				span
+				span
+				span
+		#navbarMenu.navbar-menu
+			.navbar-start
+				a.navbar-item(href="/")
+					| Home 
+				a.navbar-item(href="/about") 
+					| About
+			hr
+			.navbar-end
+				.navbar-item.has-dropdown.is-hoverable
+					.navbar-link
+						| Ideas
+						.navbar-dropdown.is-boxed
+							a.navbar-item(href="/ideas")
+								| Ideas
+							a.navbar-item(href="/ideas/add")
+								| Add idea

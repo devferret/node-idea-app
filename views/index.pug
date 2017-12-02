@@ -1,0 +1,15 @@
+extends layouts/layout.pug
+
+block title
+	title Index
+	
+block body
+	section.hero.is-medium.is-bold
+			.hero-body
+				.container
+					h1.title.is-1.animated.fadeInDown
+						| Welcome to IdeaPOP
+					h2.subtitle.is-4.animated.fadeInDown
+						| Note your idea for the next project you will GO !
+					a.button.is-primary.is-outlined.is-large.animated.fadeInUp(href="/ideas/add")
+						| Add the idea

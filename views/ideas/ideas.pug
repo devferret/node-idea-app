@@ -1,0 +1,19 @@
+extends ../layouts/layout.pug
+
+block title
+  title Ideas
+block body
+  each idea in ideas
+    .box.animated.fadeInUp
+      .content
+        h1= idea.title
+        p= idea.details
+        a.button.is-block.is-link.is-outlined(href=`/ideas/edit/${idea.id}` style="margin-bottom: 8px;") Edit
+        form(action=`/ideas/${idea.id}?_method=DELETE` method="POST")
+          input(type="hidden" name="_method" value="DELTE")
+          button.button.is-block.is-danger.is-outlined.is-fullwidth(type="submit") Delete
+  else
+    h1.subtitle.is-1.has-text-centered.animated.fadeInDown
+      | Still no any ideas ?
+    a.button.is-primary.is-outlined.is-block.is-large.animated.fadeInUp(href="/ideas/add")
+      | Add the idea

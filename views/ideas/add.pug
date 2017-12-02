@@ -1,0 +1,33 @@
+extends ../layouts/layout.pug
+
+block title
+	title Add The Idea
+	
+block body
+	.subtitle.is-3.has-text-centered.animated.fadeInDown Add your Idea
+	if errors
+		each error in errors
+			.notification.is-danger
+				p= error.text
+	form(action="/ideas" method="POST")
+		.field.is-horizontal
+			.field-label.is-normal
+				label.label Title
+			.field-body
+				.field
+					.form-control
+						input.input(type="text" placeholder="Title" name="title" required)
+		.field.is-horizontal
+			.field-label.is-normal
+				label.label Details
+			.field-body
+				.field
+					.form-control
+						textarea.textarea(placeholder="Details" name="details" required)
+		.field.is-horizontal
+			.field-label
+			.field-body
+				.field
+					.form-control
+						button.button.is-primary.is-outlined.is-medium.animated.fadeInLeft(type="submit")
+							| Add Idea
