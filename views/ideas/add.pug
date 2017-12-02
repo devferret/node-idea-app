@@ -5,10 +5,6 @@ block title
 	
 block body
 	.subtitle.is-3.has-text-centered.animated.fadeInDown Add your Idea
-	if errors
-		each error in errors
-			.notification.is-danger
-				p= error.text
 	form(action="/ideas" method="POST")
 		.field.is-horizontal
 			.field-label.is-normal

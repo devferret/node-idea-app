@@ -3,3 +3,8 @@ if success_msg.length > 0 || error_msg.length > 0
     .notification.is-success= success_msg
   if error_msg.length > 0
     .notification.is-danger= error_msg
+
+if errors
+  each error in errors
+    .notification.is-danger
+      p= error.text
