@@ -1,0 +1,46 @@
+extends ../layouts/layout.pug
+
+block title
+  title Sign In
+
+block body
+  .columns
+    .column.is-4.is-offset-4
+      .box
+        img.is-block.animated.fadeInDown(src="/img/bulb_idea.png" style="margin: auto; width: 150px;")
+        h1.subtitle.is-3.has-text-centered.animated.fadeInUp Sign In
+        form.animated.fadeIn(action="/users/login" method="POST")
+          .field
+            .form-control
+              label.label Username
+              input.input(type="text" placeholder="Username" required)
+          .field
+            .form-control
+              label.label Password
+              input.input(type="password" placeholder="Password" required)
+          .field
+            .form-control
+              button.button.is-fullwidth.is-primary(type="submit")
+                span.icon
+                  i.fa.fa-sign-in
+                span Sign In
+
+  .columns
+    .column.is-6.is-offset-3
+      .box
+        .columns.is-variable.is-1
+          .column
+            a.button.is-link.is-outlined.is-fullwidth.animated.zoomIn 
+              span.icon
+                i.fa.fa-facebook
+              span Facebook
+          .column
+            a.button.is-danger.is-outlined.is-fullwidth.animated.zoomIn 
+              span.icon
+                i.fa.fa-google
+              span Google+
+          .column
+            a.button.is-info.is-outlined.is-fullwidth.animated.zoomIn 
+              span.icon
+                i.fa.fa-twitter
+              span Twitter

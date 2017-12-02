@@ -1,0 +1,34 @@
+extends ../layouts/layout.pug
+
+block title
+  title Sign Up
+
+block body
+  .columns
+    .column.is-4.is-offset-4
+      .box
+        img.is-block.animated.fadeInDown(src="/img/bulb_idea.png" style="margin: auto; width: 150px;")
+        h1.subtitle.is-3.has-text-centered.animated.fadeInUp Sign In
+        form.animated.fadeIn(action="/users/register" method="POST")
+          .field
+            .form-control
+              label.label Username
+              input.input(type="text" placeholder="Username" required)
+          .field
+            .form-control
+              label.label Email Address
+              input.input(type="email" placeholder="Email Address" required)
+          .field
+            .form-control
+              label.label Password
+              input.input(type="password" placeholder="Password" required)
+          .field
+            .form-control
+              label.label Confirm Password
+              input.input(type="password" placeholder="Confirm Password" required)
+          .field
+            .form-control
+              button.button.is-fullwidth.is-primary(type="submit")
+                span.icon
+                  i.fa.fa-user-o
+                span Sign Up

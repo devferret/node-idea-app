@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
+const path = require('path')
 
 const app = express()
 
@@ -37,6 +38,7 @@ app.use(
   })
 )
 app.use(flash())
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Global variables
 app.use((req, res, next) => {

@@ -1,7 +1,8 @@
-nav.navbar.is-primary
+nav.navbar.is-primary(style="box-shadow: 0 2px 20px -2px gray;")
 	.container
 		.navbar-brand
 			a.navbar-item(href="/")
+				img(src="/img/bulb_idea.png" style="height: 120%;")
 				h1.title.has-text-white IdeaPOP
 			.navbar-burger.burger(data-target="navbarMenu" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');")
 				span
@@ -15,6 +16,10 @@ nav.navbar.is-primary
 					| About
 			hr
 			.navbar-end
+				a.navbar-item(href="/users/login")
+					| Sign In 
+				a.navbar-item(href="/users/register") 
+					| Register
 				.navbar-item.has-dropdown.is-hoverable
 					.navbar-link
 						| Ideas
