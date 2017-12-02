@@ -4,6 +4,10 @@ block title
   title Sign Up
 
 block body
+  if errors
+    each error in errors
+      .notification.is-danger
+        p= error.text
   .columns
     .column.is-4.is-offset-4
       .box
@@ -13,19 +17,19 @@ block body
           .field
             .form-control
               label.label Username
-              input.input(type="text" placeholder="Username" required)
+              input.input(type="text" placeholder="Username" name="name" value=`${name || ''}` required)
           .field
             .form-control
               label.label Email Address
-              input.input(type="email" placeholder="Email Address" required)
+              input.input(type="email" placeholder="Email Address" name="email" value=`${email || ''}` required)
           .field
             .form-control
               label.label Password
-              input.input(type="password" placeholder="Password" required)
+              input.input(type="password" placeholder="Password" name="password" value=`${password || ''}` required)
           .field
             .form-control
               label.label Confirm Password
-              input.input(type="password" placeholder="Confirm Password" required)
+              input.input(type="password" placeholder="Confirm Password" name="confirmPassword" value=`${confirmPassword || ''}` required)
           .field
             .form-control
               button.button.is-fullwidth.is-primary(type="submit")
