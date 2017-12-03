@@ -3,19 +3,26 @@ extends ../layouts/layout.pug
 block title
   title Ideas
 block body
+  - var index = 0;
   each idea in ideas
-    .box.animated.fadeInUp
+    .box.animated.fadeInUp(style=`animation-delay: ${(index++)/3}s`)
       .content
         h1= idea.title
         p= idea.details
         hr
         .columns
           .column
-            a.button.is-block.is-link.is-outlined(href=`/ideas/edit/${idea.id}` style="margin-bottom: 8px;") Edit
+            a.button.is-block.is-link.is-outlined(href=`/ideas/edit/${idea.id}` style="margin-bottom: 8px;")
+              span.icon
+                i.fa.fa-wrench
+              span  Edit
           .column
             form(action=`/ideas/${idea.id}?_method=DELETE` method="POST")
               input(type="hidden" name="_method" value="DELTE")
-              button.button.is-block.is-danger.is-outlined.is-fullwidth(type="submit") Delete
+              button.button.is-block.is-danger.is-outlined.is-fullwidth(type="submit")
+                span.icon
+                  i.fa.fa-trash
+                span Delete
   else
     h1.subtitle.is-1.has-text-centered.animated.fadeInDown
       | Still no any ideas ?

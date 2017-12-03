@@ -12,14 +12,6 @@ nav.navbar.is-primary(style="position: fixed !important; top: 0; left: 0; right:
 			.navbar-start
 				a.navbar-item(href="/")
 					| Home 
-				.navbar-item.has-dropdown.is-hoverable
-					.navbar-link(style="cursor: pointer;")
-						| Ideas
-						.navbar-dropdown.is-boxed
-							a.navbar-item(href="/ideas")
-								| Ideas
-							a.navbar-item(href="/ideas/add")
-								| Add idea
 				a.navbar-item(href="/about") 
 					| About
 			hr
@@ -29,13 +21,33 @@ nav.navbar.is-primary(style="position: fixed !important; top: 0; left: 0; right:
 						.field.is-grouped
 							p.control
 								a.button.is-primary(href="/users/login")
-									| Sign In 
+									span.icon
+										i.fa.fa-sign-in
+									span Sign In 
 							p.control
 								a.button.is-primary(href="/users/register") 
-									| Register
+									span.icon
+										i.fa.fa-user-o
+									span Register
 				else
+					.navbar-item
+						.field.is-grouped
+							p.control
+								a.button.is-primary.is-inverted(href="/ideas")
+									span.icon
+										i.fa.fa-lightbulb-o
+									span All your ideas
+							p.control
+								a.button.is-primary.is-inverted(href="/ideas/add")
+									span.icon
+										i.fa.fa-plus 
+									span Add new idea
+					hr
 					.navbar-item.has-dropdown.is-hoverable
-						.navbar-link(style="cursor: pointer;")= user.name
+						.navbar-link(style="cursor: pointer;")
+							span.icon
+								i.fa.fa-user
+							span= user.name
 							.navbar-dropdown.is-boxed
 								a.navbar-item(href="/users/logout") 
 									| Logout

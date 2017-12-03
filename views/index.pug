@@ -4,12 +4,18 @@ block title
 	title Index
 	
 block body
-	section.hero.is-medium.is-bold
-			.hero-body
-				.container
-					h1.title.is-1.animated.fadeInDown
-						| Welcome to IdeaPOP
-					h2.subtitle.is-4.animated.fadeInDown
-						| Note your idea for the next project you will GO !
-					a.button.is-primary.is-outlined.is-large.animated.fadeInUp(href="/ideas/add")
-						| Add the idea
+	.hero.is-bold
+		.hero-body.is-paddingless
+			.container
+				.columns.is-vcentered
+					.column
+						h1.title.is-1.animated.fadeInDown
+							| Welcome to IdeaPOP
+						h2.subtitle.is-4.animated.fadeInDown
+							| Note your idea for the next project you will GO !
+						a.button.is-primary.is-outlined.is-medium.animated.fadeInUp(href="/ideas/add")
+							span.icon
+								i.fa.fa-lightbulb-o
+							span LET'S ADD NEW IDEA
+					.column
+						img.is-block.animated.pulse(src="img/bulb_idea.png" style="margin: auto; animation-duration: 5s; animation-iteration-count: infinite;")
