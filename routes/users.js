@@ -8,12 +8,22 @@ const router = express.Router()
 require('../models/user')
 const User = mongoose.model('user')
 
-// User login
+// User Login
 router.get('/login', (req, res) => res.render('users/login'))
 
 // User Register
 router.get('/register', (req, res) => res.render('users/register'))
 
+// Post Login
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/ideas',
+    failureRedirect: '/users/login',
+    failureFlash: false
+  })(req, res, next)
+})
+
+// Post Register
 router.post('/register', (req, res) => {
   let errors = []
 
@@ -57,6 +67,12 @@ router.post('/register', (req, res) => {
       }
     })
   }
+})
+
+router.get('/current', (req, res) => res.send(req.user))
+router.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/')
 })
 
 module.exports = router

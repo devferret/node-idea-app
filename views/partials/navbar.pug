@@ -12,19 +12,31 @@ nav.navbar.is-primary(style="position: fixed !important; top: 0; left: 0; right:
 			.navbar-start
 				a.navbar-item(href="/")
 					| Home 
-				a.navbar-item(href="/about") 
-					| About
-			hr
-			.navbar-end
-				a.navbar-item(href="/users/login")
-					| Sign In 
-				a.navbar-item(href="/users/register") 
-					| Register
 				.navbar-item.has-dropdown.is-hoverable
-					.navbar-link
+					.navbar-link(style="cursor: pointer;")
 						| Ideas
 						.navbar-dropdown.is-boxed
 							a.navbar-item(href="/ideas")
 								| Ideas
 							a.navbar-item(href="/ideas/add")
 								| Add idea
+				a.navbar-item(href="/about") 
+					| About
+			hr
+			.navbar-end
+				if !user
+					.navbar-item
+						.field.is-grouped
+							p.control
+								a.button.is-primary(href="/users/login")
+									| Sign In 
+							p.control
+								a.button.is-primary(href="/users/register") 
+									| Register
+				else
+					.navbar-item.has-dropdown.is-hoverable
+						.navbar-link(style="cursor: pointer;")= user.name
+							.navbar-dropdown.is-boxed
+								a.navbar-item(href="/users/logout") 
+									| Logout
+						
