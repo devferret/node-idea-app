@@ -13,11 +13,13 @@ const app = express()
 const ideas = require('./routes/ideas')
 const users = require('./routes/users')
 
+// Import MongoDB config
+const db = require('./config/database')
 // Map global promise
 mongoose.Promise = global.Promise
 // Connect to mongoose
 mongoose
-  .connect('mongodb://localhost/idea-pop', {
+  .connect(db.mongoURI, {
     useMongoClient: true
   })
   .then(() => console.log('MongoDB connected...'))
