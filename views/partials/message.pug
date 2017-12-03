@@ -8,3 +8,7 @@ if errors
   each error in errors
     .notification.is-danger
       p= error.text
+
+if error.length > 0
+  .notification.is-danger
+      p= error

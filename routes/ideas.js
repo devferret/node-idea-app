@@ -10,7 +10,7 @@ require('../models/idea')
 const Idea = mongoose.model('idea')
 
 router.get('/', ensureAuthenticated, (req, res) => {
-  Idea.find({})
+  Idea.find({ owner: req.user._id })
     .sort({ date: 'desc' })
     .then(ideas => {
       res.render('ideas/ideas', { ideas: ideas })
@@ -20,9 +20,10 @@ router.get('/', ensureAuthenticated, (req, res) => {
 router.get('/add', ensureAuthenticated, (req, res) => res.render('ideas/add'))
 
 router.get('/edit/:id', (req, res) => {
-  Idea.findOne({ _id: req.params.id }).then(idea =>
-    res.render('ideas/edit', { idea: idea })
-  )
+  Idea.findOne({
+    _id: req.params.id,
+    owner: req.user._id
+  }).then(idea => res.render('ideas/edit', { idea: idea }))
 })
 
 router.post('/', ensureAuthenticated, (req, res) => {
@@ -38,7 +39,8 @@ router.post('/', ensureAuthenticated, (req, res) => {
   else
     new Idea({
       title: req.body.title,
-      details: req.body.details
+      details: req.body.details,
+      owner: req.user._id
     })
       .save()
       .then(() => {

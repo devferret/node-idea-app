@@ -10,7 +10,7 @@ module.exports = passport => {
       // Match user
       User.findOne({ name: username })
         .then(user => {
-          if (!user) done(null, false, { message: 'User not found' })
+          if (!user) return done(null, false, { message: 'User not found' })
 
           // Match password
           bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -25,7 +25,6 @@ module.exports = passport => {
 
   passport.serializeUser((user, done) => done(null, user.id))
   passport.deserializeUser((userId, done) =>
-    // User.findById({ _id: userId }, (err, user) => done(err, user))
     User.findById({ _id: userId }, (err, user) => done(err, user))
   )
 }
