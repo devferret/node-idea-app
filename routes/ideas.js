@@ -19,11 +19,16 @@ router.get('/', ensureAuthenticated, (req, res) => {
 
 router.get('/add', ensureAuthenticated, (req, res) => res.render('ideas/add'))
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
   Idea.findOne({
     _id: req.params.id,
     owner: req.user._id
-  }).then(idea => res.render('ideas/edit', { idea: idea }))
+  })
+    .then(idea => {
+      if (idea) return res.render('ideas/edit', { idea: idea })
+      res.redirect('/ideas')
+    })
+    .catch(err => console.log('err'))
 })
 
 router.post('/', ensureAuthenticated, (req, res) => {
